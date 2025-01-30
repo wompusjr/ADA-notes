@@ -49,4 +49,40 @@ rownames() ##only works with df
 str()
 glimpse()
 dim()
+
+attach() #allows R to know which variable you are referring to without specifying the data frame
+with() #accomplishes a simular goal
+```
+
+Summaries for variables
+
+``` R
+summary() #gives the 5-number summary for each variable plus its class & mode if applicable
+skim() #more cleaned up version of summary()
+```
+
+Boxplots & Sexy Boxplots (stripplots)
+
+``` R
+boxplot(log(d3$Body_mass_female_mean))
+stripchart(log(d3$Body_mass_female_mean),
+           method = "jitter",
+           col = "blue",
+           vertical = TRUE,
+           add = TRUE)
+boxplot(log(d3$Body_mass_female_mean) ~ d3$Family)
+stripchart(log(d3$Body_mass_female_mean) ~ d3$Family,
+           method = "jitter",
+           col = "blue",
+           vertical = TRUE,
+           add = TRUE)
+```
+
+ggplot2 and its mysteries
+
+``` R
+p <- ggplot(data = d3,
+       aes(x = "", y = log(d3$Body_mass_female_mean))) + 
+  geom_boxplot(na.rm = TRUE) + 
+  geom_jitter( color = "blue", width = 0.1)
 ```
