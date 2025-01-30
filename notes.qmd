@@ -1,0 +1,52 @@
+---
+title: "notes - 1/28"
+format: html
+editor: visual
+---
+
+# Notes 1/28
+
+**Five Number Summary** is *min, max, 1st, 2nd, and 3rd quartiles*
+
+### Challenge
+
+Number of variables: 16
+
+Number of observations: 248
+
+Number of countries: 248
+
+Densest country: Macau
+
+# Notes 1/30
+
+``` R
+file2 <- file.choose()
+d2 <- read_csv(file2, col_names = TRUE)
+d2$population
+d2$area
+d2$density <- d2$population / d2$area
+d2 <- d2 %>%
+  arrange(desc(density))
+##requires read_csv to work properly
+```
+
+Important to understand the difference between a **data frame** (data arranged into a two dimensional table)and a **tibble** (list of vectors)
+
+-   Tibbles don't work with as many functions as data frames, so those may cause more errors. However, certain functions work only on tibbles
+
+    -   Most sub-setting works on both though
+
+-   Tibbles are more manageable for working with in general (Tony's preference)
+
+Useful functions for getting a grasp of the data you just freeking imported
+
+``` R
+head()
+tail()
+colnames()
+rownames() ##only works with df
+str()
+glimpse()
+dim()
+```
