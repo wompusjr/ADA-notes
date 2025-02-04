@@ -20,7 +20,7 @@ Densest country: Macau
 
 # Notes 1/30
 
-``` R
+``` r
 file2 <- file.choose()
 d2 <- read_csv(file2, col_names = TRUE)
 d2$population
@@ -41,7 +41,7 @@ Important to understand the difference between a **data frame** (data arranged i
 
 Useful functions for getting a grasp of the data you just freeking imported
 
-``` R
+``` r
 head()
 tail()
 colnames()
@@ -56,14 +56,14 @@ with() #accomplishes a simular goal
 
 Summaries for variables
 
-``` R
+``` r
 summary() #gives the 5-number summary for each variable plus its class & mode if applicable
 skim() #more cleaned up version of summary()
 ```
 
 Boxplots & Sexy Boxplots (stripplots)
 
-``` R
+``` r
 boxplot(log(d3$Body_mass_female_mean))
 stripchart(log(d3$Body_mass_female_mean),
            method = "jitter",
@@ -80,9 +80,79 @@ stripchart(log(d3$Body_mass_female_mean) ~ d3$Family,
 
 ggplot2 and its mysteries
 
-``` R
+``` r
 p <- ggplot(data = d3,
        aes(x = "", y = log(d3$Body_mass_female_mean))) + 
   geom_boxplot(na.rm = TRUE) + 
   geom_jitter( color = "blue", width = 0.1)
+```
+
+# Notes 2/4
+
+Scatterplot
+
+``` r
+library(tidyverse)
+d <- read_csv("/Users/juneburke/Downloads/KamilarAndCooperData.csv", col_names = TRUE)
+attach(d)
+(p <- ggplot(data = d, aes(x = log(Body_mass_female_mean),
+                          y = log(Brain_Size_Female_Mean))) + 
+  geom_point(na.rm = TRUE)) ##surrounding it will make the plot automatically appear
+str(p)
+```
+
+Adding stuff
+
+``` R
+(p <- ggplot(data = d, aes(x = log(Body_mass_female_mean),
+                          y = log(Brain_Size_Female_Mean))) + 
+  geom_point(na.rm = TRUE) + 
+    geom_smooth(method = "lm", na.rm=TRUE, color = "pink") +
+    geom_vline(xintercept = 7)+
+    geom_hline(yintercept = 3)+
+    geom_point(data = d, aes( x=log(Body_mass_female_mean),y=log(Body_mass_male_mean)))+
+    geom_smooth(data = d, aes(
+      x=log(Body_mass_female_mean), 
+      y=log(Body_mass_male_mean)
+      ), method = "lm", na.rm = TRUE, color = "cyan"))
+install.packages("cowplot")
+library(cowplot) 
+plot_grid()#lets you load multiple plots together
+```
+
+**Data wrangling**
+
+``` r
+filter() #extracts rows that meet logical criteria (exports as tabular data)
+select() #extract columns as a table (exports as tabular data)
+arrange() #order rows by values of a column/columns from low to high
+  ##adding desc() switches the order
+group_by() #creates a table grouped by a particular column
+  ##piping helps to simplify this process
+summarize() #gets summaru statistics for a certain column as a vector
+mutate() #creates new variables within a dataframe
+```
+
+*Examples*
+
+``` R
+s <- select(d, Family, Genus, Body_mass_male_mean)
+s <- arrange(d, Family, Genus, desc(Body_mass_male_mean))
+s <- summarize(
+  group_by(d, Family),
+  avgF = mean(Body_mass_female_mean, na.rm = TRUE)
+)
+```
+
+**Flow Control & Looping**
+
+``` r
+if () else ()
+ifelse()
+if_else()
+```
+
+CHALLENGE : Comedy
+
+``` r
 ```
