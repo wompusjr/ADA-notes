@@ -103,7 +103,7 @@ str(p)
 
 Adding stuff
 
-``` R
+``` r
 (p <- ggplot(data = d, aes(x = log(Body_mass_female_mean),
                           y = log(Brain_Size_Female_Mean))) + 
   geom_point(na.rm = TRUE) + 
@@ -135,7 +135,7 @@ mutate() #creates new variables within a dataframe
 
 *Examples*
 
-``` R
+``` r
 s <- select(d, Family, Genus, Body_mass_male_mean)
 s <- arrange(d, Family, Genus, desc(Body_mass_male_mean))
 s <- summarize(
