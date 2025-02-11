@@ -27,3 +27,7 @@ attach(df)
 head(df)
 df <- mutate(df, comedy = if(genres = "Comedy") {} "TRUE", ifelse = "FALSE"))
 
+install.packages("mosaic")
+install.packages("radiant")
+install.packages("sciplot")
+install.packages("infer")
