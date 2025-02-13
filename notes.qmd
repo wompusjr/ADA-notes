@@ -177,7 +177,7 @@ An outer left join creates a NA cell if there is no info in the right table that
 
 An outer right join does the opposite and a full outer does both
 
-``` R
+``` r
 inner <-inner_join(c, p, by = c("fullName" = "First Author"))
 left <- left_join(c,p, by = c("fullName" = "First Author"))
 right <- right_join(p,c, by = c("First Author" = "fullName"))
@@ -196,7 +196,7 @@ inner_fuzzy2 <- regex_inner_join(p, find_pubs3, by = c("First Author" =
 
 ### Functions
 
-``` R
+``` r
 ##template
 my_function <- function(<argument list>){
 <<function code>>
@@ -204,3 +204,78 @@ return(<value>)
 }
 #example
 ```
+
+# Notes 2/13
+
+Data Wrangling Challenge
+
+``` r
+library(tidyverse)
+install.packages("oce")
+library(oce)
+library(dplyr)
+gps <- read_csv("https://raw.githubusercontent.com/difiore/ada-datasets/refs/heads/main/sample_gps_data.csv", col_names = TRUE)
+beh <- read_csv("https://raw.githubusercontent.com/difiore/ada-datasets/refs/heads/main/sample_behavioral_data.csv", col_names = TRUE)
+beh <- beh |> mutate(Year = substr(beh$Date.Time, 1, 4))
+beh <- filter(beh, Year == (2012:2014))
+inner <-inner_join(beh, gps, by = c("Date.Time" = "Date.Time", "Observer" = "Observer"))
+inner2 <- inner |>
+  rowwise() |>
+  mutate(
+    easting = lonlat2utm(`Mean.Longitude`,`Mean.Latitude`)$easting,
+    northing = lonlat2utm (`Mean.Longitude`, `Mean.Latitude`)$northing + 
+      10000000
+  )
+poto <- filter(inner2, Focal.Animal == ("Poto"))
+library(ggplot2)
+potoplot <- ggplot(data = poto, aes(x = easting,
+                           y = northing)) + 
+    geom_point(na.rm = TRUE) +
+potoplot
+```
+
+## big statistics ideas
+
+population vs. sample
+
+*Population* is a group we want to study (all gorillas) whereas the *sample* is a subset of the population that we hope can represent the entire population (1000 randomly selected gorillas)
+
+parameter vs. statistics
+
+A *statistic* is some function of the data alone based on a finite amount of the data (usually the sample) whereas the *parameter* is supposed to represent the bounds of a given population
+
+measures of location
+
+**mean** (avg.)
+
+**median** (middle number)
+
+**mode** (common number)**,**
+
+**harmonic mean** (the reciprocal of the average of the reciprocals of a set of values)
+
+measures of spread
+
+**mean deviation** (average of absolute values of deviations from median),
+
+**mean squared deviation** (average of squared deviations from the mean) also called **variation,**
+
+-   *population variance* - a parameter (sigma squared)
+
+    ``` r
+    sum((x - mean(x))^2)/(length(x))
+    ```
+
+-   *sample variance* - a statistic (s squared)
+
+    ``` r
+    var()
+    ```
+
+**standard deviation** (square root of variance).
+
+measures of shape
+
+**skewness** (characterizes the asymmetry of the distribution)
+
+**kurtosis** (characterizes the peakedness/flatness of a distribution \[compared to normal\])

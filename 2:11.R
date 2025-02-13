@@ -47,10 +47,10 @@ my_print_reps <- function(x, reps = 2){
 }
 my_filter <- function(x, condition, variable){ 
   library(tidyverse)
-  x <- x |> filter(rowid %in% condition) #non-functioning function
+  x <- x |> filter(!!sym(variable) %in% condition) 
   return(x) }
 df <- data.frame(rowid = 1:5, value = c("a","b", "c", "d", "e"))
-my_filter(df, condition = c(3), variable = "rowid")
+new_df <- my_filter(df, condition = c(3), variable = "rowid")
 
 
 
