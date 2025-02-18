@@ -279,3 +279,53 @@ measures of shape
 **skewness** (characterizes the asymmetry of the distribution)
 
 **kurtosis** (characterizes the peakedness/flatness of a distribution \[compared to normal\])
+
+# Notes 2/18
+
+## more big statistics ideas
+
+classical/frequentist statistical inference is based on well-define mathematical distributions. essentially, we assume they they are estimates of the parameters (mean is an estimate of mu - sd is an estimate of sigma - etc) of distribution
+
+*Exercise*
+
+``` R
+library(mosaic)
+mu <- 10
+sigma <- 2
+plotDist("norm",mean=mu, sd=sigma, xlab = "x", ylab = "Frequency")
+##visualizing a normal distribution ^
+##drawing out of the normal distribution v 
+s1 <- rnorm(n = 100, mean = 10, sd = 2)
+mean(s1)
+sd(s1)
+```
+
+**sampling distribution** is set of possible statistics that could have been generated if the data collection process were repeated many times, along with the probabilities of these possible values
+
+``` R
+reps <- 500
+samp_dist_mean <-
+  do(reps) * mean(rnorm(n=10, mean=10, sd =2))
+str(samp_dist_mean)
+histogram(samp_dist_mean$mean)
+samp_dist_median <-
+  do(reps) * median(rnorm(n=10, mean=10, sd =2))
+histogram(samp_dist_median$median)
+mean(samp_dist_mean$mean)
+```
+
+How far off is a statistic that we calculate based on a sampling distribution likely to be from the true population value of the parameter of interest?
+
+**standard error** is one measure of this reliability (= square root of the variance of the sampling distribution OR standard deviation of a sampling distribution
+
+``` R
+se_mean <- sd(samp)
+```
+
+**confidence interval** is another way of describing a statistics sampling distribution or uncertainty. It plays the most important role in inferential statistics. (=n interval around our estimate of mean of the sampling distribution for a particular statistic) produces a range of values into which subsequent estimates of a statistic would be expected to fall some critical proportion of the time, if the sampling exercise were to be repeated
+
+## Challenge
+
+``` R
+se_mean <- sd(samp)
+```
