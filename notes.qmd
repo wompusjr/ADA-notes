@@ -288,7 +288,7 @@ classical/frequentist statistical inference is based on well-define mathematical
 
 *Exercise*
 
-``` R
+``` r
 library(mosaic)
 mu <- 10
 sigma <- 2
@@ -302,7 +302,7 @@ sd(s1)
 
 **sampling distribution** is set of possible statistics that could have been generated if the data collection process were repeated many times, along with the probabilities of these possible values
 
-``` R
+``` r
 reps <- 500
 samp_dist_mean <-
   do(reps) * mean(rnorm(n=10, mean=10, sd =2))
@@ -318,7 +318,7 @@ How far off is a statistic that we calculate based on a sampling distribution li
 
 **standard error** is one measure of this reliability (= square root of the variance of the sampling distribution OR standard deviation of a sampling distribution
 
-``` R
+``` r
 se_mean <- sd(samp)
 ```
 
@@ -326,6 +326,33 @@ se_mean <- sd(samp)
 
 ## Challenge
 
-``` R
-se_mean <- sd(samp)
+``` r
+sample <- rnorm(n = 100, mean = 2, sd = 4)
+mean(sample) #what is the mean? 1.706305
+sd(sample) #what is the standard deviation? 4.374248
+(se1 <- sd(sample/sqrt(length(sample)))) #what is the standard error based on the sample? 0.4374248
+reps <- 1000
+sample_dist_mean <-
+  do(reps) * mean(rnorm(n = 100, mean = 2, sd = 4))
+(se2 <- sd(sample_dist_mean$mean)) #se for the sample distribution? 0.3893194
+plotDist("t", df=10, xlab = "x", ylab = "Frequency", col = "cyan")
+reps <- 1000
+sample_dist_t <-
+  do(reps) * mean(rt(n = 100, df = 99, ncp = 2))
+(mean(sample_dist_t$mean))
+plotDist("beta", shape1=0.3, shape2=4, xlab = "x", ylab = "Frequency", col = "cyan")
 ```
+
+# Notes 2/20
+
+## Key functions for distributions
+
+r\_(n=) - draws RANDOM SAMPLES of size n from a given distribution
+
+p\_(q=) - returns the quantile associated with a given value of X (the value of the cumulative density function
+
+q\_(p=) - returns the value of X at a given quantile through the distribution (value of the inverse cumulative density function
+
+d\_(x=) - returns the value of the probability density function at the values of x
+
+**central limit theorem** as the number of samples get bigger, they begin to approach a normal distribution regardless of the original distribution
