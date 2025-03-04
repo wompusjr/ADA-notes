@@ -356,3 +356,8 @@ q\_(p=) - returns the value of X at a given quantile through the distribution (v
 d\_(x=) - returns the value of the probability density function at the values of x
 
 **central limit theorem** as the number of samples get bigger, they begin to approach a normal distribution regardless of the original distribution
+
+# Notes 2/27
+
+``` R
+```
