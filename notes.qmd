@@ -1,5 +1,5 @@
 ---
-title: "notes - 1/28"
+title: "notes"
 format: html
 editor: visual
 ---
@@ -440,3 +440,47 @@ OR
 ``` r
 prob =  dnorm(val, parameter_mean, parameter_sd)
 ```
+
+# Notes 3/25
+
+the **goal of regression** is to partition variance in the outcome/response variable among different sources, i.e., into that explained by the **regression model** itself versus the left-over error or **residual variance**
+
+We can separate or partition the total variation in our y variable (i.e., deviations of the the observed response variable from the mean = the sum of squares of y or **SSY**) into that explained by our model (the regression sum of squares or **SSR**, which the deviation in estimated y values from the mean) and that which is left over as "error" (the error sum of squares, or **SSE**, which is e, or the deviation between observed and estimated y valued)
+
+-   SSY = SSR + SSE
+
+In general, regression is **how variation is partitioned**
+
+**ANOVA tables**
+
+From here, we can calculate the variance in each of these components typically referred to as the mean square - by dividing each sum of squares bu its corresponding \# of degrees of freedom
+
+The number of degrees of freedom for the total sum of squares (SSY) is n-1
+
+-   we need to estimate on parameter from our data before we can calculate SSY
+
+The number of degrees of freedom for the SSR is equal to the number of predictor variables (p)
+
+-   this is because we need to know only the value of P in order to calculate the predicted values of response variable
+
+The number of degrees of freedom for the SSE is equal to n-(p+1) or n-p-1
+
+-   because we need to estimate p+1 parameters
+
+**Checking for Linear Regression Validity**
+
+So far, we've used the lm() function (or hand calculation) to derive summary statistics describing a model, and we have looked at parametric ways of testing whether those summary statistics are significantly different from null expectations but we haven't checked validity
+
+Requirements
+
+-   Linearity of relationship between variables
+
+-   Independence of observations
+
+-   Normality of residuals
+
+-   Equality of variances of the residuals
+
+These can be evaluated by *residual analysis*
+
+**Categorical predictors**
