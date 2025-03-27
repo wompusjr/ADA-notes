@@ -484,3 +484,9 @@ Requirements
 These can be evaluated by *residual analysis*
 
 **Categorical predictors**
+
+# Notes 3/27
+
+Post-Hoc tests are conducted after a significant F statistic is found to see variation
+
+Multi-factor ANOVAs
