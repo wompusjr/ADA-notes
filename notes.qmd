@@ -490,3 +490,9 @@ These can be evaluated by *residual analysis*
 Post-Hoc tests are conducted after a significant F statistic is found to see variation
 
 Multi-factor ANOVAs
+
+# Notes 4/3
+
+prediction intervals is an estimate of an individual variable
+
+confidence intervals are an estimate of the MEAN
