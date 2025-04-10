@@ -496,3 +496,48 @@ Multi-factor ANOVAs
 prediction intervals is an estimate of an individual variable
 
 confidence intervals are an estimate of the MEAN
+
+# Notes 4/10
+
+Generalized Linear Modeling
+
+Linear models assume that our response variables are continuously distributed and have normally distributed errors/residuals with constant variance across the rang of our predictor variables
+
+when we have different kinds of response variables or when residuals are not homoscedastic, we can sometimes use a different regression technique called **generalized linear modeling**
+
+Generalized linear models extend simple linear regression to allow the expected value of our response variable to depend on our predictor variable through what is called a link function
+
+Features
+
+-   No longer using ordinary least squares instead using **maximum likelihood** or **Bayesian** approaches
+
+    -   it's an iterative process in which the inear predictor for each value of the response variable given a particular set of paramter values then back-transforms the predicted value into the scal e fo the u variable using the inverse of th link function
+
+-   Made of three components
+
+    -   linear component - reflects the linear combination of predictor variable in our model
+
+    -   error structure/random component - refers to the probability distribution of the response variable and of the residuals in the response variable after the linear component has been removed
+
+    -   link function - connects the expected value of the response variable to the predictors. You can think of this as a transformation function
+
+As in general linear modeling the linear component of the model yields a predicted value but this value is not the predicted value of our response variable. Rather the predicted value from the regression model needs to be transformed back into a predcted Y
+
+-   Link functions
+
+    -   Identity link - used to model the mean value of the response and is what we use implicituy in standard lnear models
+
+    -   log link is used to model log(mean)
+
+        -   good for poisson or
+
+-   Types of GLM
+
+    -   Logistic regresson - used when our responve variable is [binary]{.underline}
+
+        -   We are interested in modeling the probability that Y equals.1 for a given value of X.
+
+        -   The errors are not normally distributed but have a binomial dsitribution
+
+            ``` R
+            ```
