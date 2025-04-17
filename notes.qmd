@@ -545,3 +545,21 @@ As in general linear modeling the linear component of the model yields a predict
 # Notes 4/15
 
 ## Generalized Linear Modeling (continuing)
+
+# Notes 4/17
+
+Mixed Level Modeling
+
+In general or generalized linear mixed effects model (**LMM/GLMM**), we have a response variable, Y, and observation that fall into different factor categories each with some set of levels and we are interested in the effected of the various factors and factor levels on the response variable.
+
+We can conceptualize these factor effects as being either **fixed** or **random**
+
+-   Fixed factors are those that reflect all levels of interest in our study while random effects are those that represent only a sample of the levels of interest
+
+-   When we were doing ANOVA and ANCOVA analyses previously, we were implicitly looking at the effects of fixed factors now we're adding in **random** factors
+
+LMM/GLMM broadens the scope of inference. That is, we can use statistical methods to infer something about the population from which the levels of the random factor have been drawn.
+
+Using random effects naturally incorporates dependence in the model and helps us account for pseudo-replication in our dataset. Observation that share the same level of the random effects are explicitly modeled as being correlated. This makes mixed effect modeling very useful for dealing with time series data, spatially correlated data, or situation where we have repeated observation/measure from the same subjects or sampling units.
+
+Incorporating random factors requires the use of more sophisticated estimation and fitting methods.
