@@ -539,5 +539,9 @@ As in general linear modeling the linear component of the model yields a predict
 
         -   The errors are not normally distributed but have a binomial dsitribution
 
-            ``` R
+            ``` r
             ```
+
+# Notes 4/15
+
+## Generalized Linear Modeling (continuing)
